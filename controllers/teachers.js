@@ -43,8 +43,7 @@ const addTeacher = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        password: req.body.password
-        
+        password: req.body.password  
     };
     const response = await mongodb.getDatabase().db('students').collection('teachers').insertOne(teacher);
     if (response.acknowledged) {
