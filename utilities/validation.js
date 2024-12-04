@@ -25,4 +25,6 @@ const validate = (req, res, next) => {
 }
 
 //Dont forget to add the validation rules you add here.
-module.exports = { validate}
+module.exports = { 
+  validate
+ }
