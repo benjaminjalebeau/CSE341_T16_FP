@@ -1,0 +1,51 @@
+[
+    {
+    "studentsEnrolled": ["S001", "S003", "S005", "S007"],
+    "teacherId": "T001",
+    "courseName": "Introduction to Programming",
+    "credits": 3,
+    "assignmentId": ["A001", "A002", "A003"]
+    },
+    {
+    "studentsEnrolled": ["S002", "S004", "S006", "S008"],
+    "teacherId": "T002",
+    "courseName": "Data Structures",
+    "credits": 4,
+    "assignmentId": ["A004", "A005", "A006"]
+    },
+    {
+    "studentsEnrolled": ["S003", "S005", "S007", "S009"],
+    "teacherId": "T003",
+    "courseName": "Database Systems",
+    "credits": 3,
+    "assignmentId": ["A007", "A008", "A009"]
+    },
+    {
+    "studentsEnrolled": ["S001", "S002", "S008", "S010"],
+    "teacherId": "T004",
+    "courseName": "Web Development",
+    "credits": 3,
+    "assignmentId": ["A010", "A011", "A012"]
+    },
+    {
+    "studentsEnrolled": ["S004", "S006", "S009"],
+    "teacherId": "T005",
+    "courseName": "Operating Systems",
+    "credits": 4,
+    "assignmentId": ["A013", "A014", "A015"]
+    },
+    {
+    "studentsEnrolled": ["S001", "S005", "S007", "S010"],
+    "teacherId": "T006",
+    "courseName": "Computer Networks",
+    "credits": 3,
+    "assignmentId": ["A016", "A017", "A018"]
+    },
+    {
+    "studentsEnrolled": ["S002", "S003", "S004", "S010"],
+    "teacherId": "T007",
+    "courseName": "Software Engineering",
+    "credits": 4,
+    "assignmentId": ["A019", "A020", "A021"]
+    }
+]
