@@ -1,21 +1,26 @@
 const router = require('express').Router();
-const teachersController = require("../controllers/teachers");
+const teachersController = require('../controllers/teachers');
 
-const { isAuthenticated } = require("../utilities/authenticate.js")
-
+const { isAuthenticated } = require('../utilities/authenticate');
+const { handleErrors } = require('../utilities/errors');
 
 //Teacher CRUD routes
-router.get('/', teachersController.getAllTeachers );
+router.get('/', handleErrors(teachersController.getAllTeachers));
 
-router.get('/:id', teachersController.getTeacherByID );
+router.get('/:id', handleErrors(teachersController.getTeacherByID));
 
-router.post('/', isAuthenticated, teachersController.addTeacher );
+router.post('/', isAuthenticated, handleErrors(teachersController.addTeacher));
 
-router.put('/:id', teachersController.updateTeacher );
+router.put(
+	'/:id',
+	isAuthenticated,
+	handleErrors(teachersController.updateTeacher)
+);
 
-router.delete('/:id', teachersController.deleteTeacher );
-
-
-
+router.delete(
+	'/:id',
+	isAuthenticated,
+	handleErrors(teachersController.deleteTeacher)
+);
 
 module.exports = router;
