@@ -34,10 +34,8 @@ const getAllTeachers = async (req, res) => {
 const getTeacherByID = async (req, res) => {
 	//#swagger.tags=['Teachers']
 	try {
-		if (!ObjectId.isValid(req.params.id)) {
-			throw new AppError(400, 'Please enter a valid teacher id.');
-		}
 		const teacherId = ObjectId.createFromHexString(req.params.id);
+
 		const result = await mongodb
 			.getDatabase()
 			.collection('teachers')
@@ -100,11 +98,8 @@ const addTeacher = async (req, res) => {
 const updateTeacher = async (req, res) => {
 	//#swagger.tags=['Teachers']
 	try {
-		if (!ObjectId.isValid(req.params.id)) {
-			throw new AppError(400, 'Please enter a valid teacher id.');
-		}
-
 		const teacherId = ObjectId.createFromHexString(req.params.id);
+
 		const teacher = {
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
@@ -136,12 +131,8 @@ const updateTeacher = async (req, res) => {
 //Errors will return if parameter is not a valid mongodbid, the id matches no teachers in the collection,
 //or the response/request was bad.
 const deleteTeacher = async (req, res) => {
-	//#swagger.tags=['Teacher']
+	//#swagger.tags=['Teachers']
 	try {
-		if (!ObjectId.isValid(req.params.id)) {
-			res.status(400).json('Please enter a valid teacher id.');
-		}
-
 		const teacherId = ObjectId.createFromHexString(req.params.id);
 
 		const response = await mongodb
