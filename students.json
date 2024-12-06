@@ -1,0 +1,92 @@
+[
+    {
+        "student_id": "S001",
+        "firstname": "Firstname1",
+        "lastname": "Lastname1",
+        "email": "student1@email.com",
+        "password": "password1",
+        "studentyear": 1,
+        "enrollmentstatus": true
+    },
+    {
+        "student_id": "S002",
+        "firstname": "Firstname2",
+        "lastname": "Lastname2",
+        "email": "student2@email.com",
+        "password": "password2",
+        "studentyear": 2,
+        "enrollmentstatus": false
+    },
+    {
+        "student_id": "S003",
+        "firstname": "Firstname3",
+        "lastname": "Lastname3",
+        "email": "student3@email.com",
+        "password": "password3",
+        "studentyear": 3,
+        "enrollmentstatus": true
+    },
+    {
+        "student_id": "S004",
+        "firstname": "Firstname4",
+        "lastname": "Lastname4",
+        "email": "student4@email.com",
+        "password": "password4",
+        "studentyear": 4,
+        "enrollmentstatus": false
+    },
+    {
+        "student_id": "S005",
+        "firstname": "Firstname5",
+        "lastname": "Lastname5",
+        "email": "student5@email.com",
+        "password": "password5",
+        "studentyear": 1,
+        "enrollmentstatus": true
+    },
+    {
+        "student_id": "S006",
+        "firstname": "Firstname6",
+        "lastname": "Lastname6",
+        "email": "student6@email.com",
+        "password": "password6",
+        "studentyear": 2,
+        "enrollmentstatus": false
+    },
+    {
+        "student_id": "S007",
+        "firstname": "Firstname7",
+        "lastname": "Lastname7",
+        "email": "student7@email.com",
+        "password": "password7",
+        "studentyear": 3,
+        "enrollmentstatus": true
+    },
+    {
+        "student_id": "S008",
+        "firstname": "Firstname8",
+        "lastname": "Lastname8",
+        "email": "student8@email.com",
+        "password": "password8",
+        "studentyear": 4,
+        "enrollmentstatus": false
+    },
+    {
+        "student_id": "S009",
+        "firstname": "Firstname9",
+        "lastname": "Lastname9",
+        "email": "student9@email.com",
+        "password": "password9",
+        "studentyear": 1,
+        "enrollmentstatus": true
+    },
+    {
+        "student_id": "S010",
+        "firstname": "Firstname10",
+        "lastname": "Lastname10",
+        "email": "student10@email.com",
+        "password": "password10",
+        "studentyear": 2,
+        "enrollmentstatus": false
+    }
+]

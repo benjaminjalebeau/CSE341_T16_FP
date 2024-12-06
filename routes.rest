@@ -1,4 +1,75 @@
-# local Host
-# Customers Routes
-### 
-GET http://localhost:3000/
+### Students
+
+# Get all students
+GET http://localhost:3000/students
+
+# Get a single student by ID
+GET http://localhost:3000/students/{id}
+
+# Create a new student
+POST http://localhost:3000/students
+{
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "john.doe@example.com",
+    "password": "password123",
+    "studentyear": 2024,
+    "enrollmentstatus": "enrolled"
+}
+
+# Update a student's information by ID
+PUT http://localhost:3000/students/{id}
+{
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "john.doe@email.com",
+    "password": "newpassword123",
+    "studentyear": 4,
+    "enrollmentstatus": true
+}
+
+# Delete a student by ID
+DELETE http://localhost:3000/students/{id}
+
+# Get students by student year
+GET http://localhost:3000/students/year/{studentyear}
+
+# Get students by enrollment status
+GET http://localhost:3000/students/status/{enrollmentstatus}
+
+### Courses
+
+# Get all courses
+GET http://localhost:3000/courses
+
+# Get a single course by MongoDB ID
+GET http://localhost:3000/courses/{MongoDBId}
+
+# Create a new course
+POST http://localhost:3000/courses
+{
+    "studentsEnrolled": ["S001", "S002", "S003"],
+    "MongoDBTeacherId": "T12345",
+    "courseName": "Introduction to Programming",
+    "credits": 3,
+    "MongoDBassignmentId": ["A001", "A002"]
+}
+
+# Update a course by MongoDB ID
+PUT http://localhost:3000/courses/{MongoDBId}
+{
+    "studentsEnrolled": ["S001", "S002", "S004"],
+    "MongoDBTeacherId": "T67890",
+    "courseName": "Advanced Programming",
+    "credits": 4,
+    "MongoDBassignmentId": ["A003", "A004"]
+}
+
+# Delete a course by MongoDB ID
+DELETE http://localhost:3000/courses/{MongoDBId}
+
+# Get courses by MongoDB Teacher ID
+GET http://localhost:3000/courses/teacher/{MongoDBTeacherId}
+
+# Get courses by students enrolled
+GET http://localhost:3000/courses/students/{studentId}
