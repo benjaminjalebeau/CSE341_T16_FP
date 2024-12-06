@@ -110,7 +110,9 @@ function checkOnUpdate(req, res, next) {
 		return res
 			.status(400)
 			.setHeader('Content-Type', 'application/json')
-			.json(new ValidationError(400, 'Error on user modification.', details));
+			.json(
+				new ValidationError(400, 'Error on teacher modification.', details)
+			);
 	}
 
 	next();
