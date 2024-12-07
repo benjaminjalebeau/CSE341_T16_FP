@@ -1,4 +1,5 @@
 const mongodb = require('../data/database');
+const { ObjectId } = require('mongodb');
 const { AppError } = require('../utilities/errors');
 
 const getAll = async (req, res) => {
@@ -25,11 +26,12 @@ const getAll = async (req, res) => {
 const getSingle = async (req, res) => {
 	//#swagger.tags=['Students']
 	try {
-		const studentId = parseInt(req.params.id);
+		const studentId = ObjectId.createFromHexString(req.params.id);
+
 		const result = await mongodb
 			.getDatabase()
 			.collection('students')
-			.find({ student_id: studentId })
+			.find({ _id: studentId })
 			.toArray();
 
 		if (result.length === 0) throw new AppError(404, 'Student not found');
@@ -144,7 +146,7 @@ const createStudent = async (req, res) => {
 
 const updateStudent = async (req, res) => {
 	//#swagger.tags=['Students']
-	const studentId = parseInt(req.params.id);
+	const studentId = ObjectId.createFromHexString(req.params.id);
 
 	try {
 		const updatedStudent = {
@@ -159,7 +161,7 @@ const updateStudent = async (req, res) => {
 		const response = await mongodb
 			.getDatabase()
 			.collection('students')
-			.updateOne({ student_id: studentId }, { $set: updatedStudent });
+			.updateOne({ _id: studentId }, { $set: updatedStudent });
 
 		if (response.modifiedCount <= 0)
 			throw new Error(
@@ -174,13 +176,13 @@ const updateStudent = async (req, res) => {
 
 const deleteStudent = async (req, res) => {
 	//#swagger.tags=['Students']
-	const studentId = parseInt(req.params.id);
+	const studentId = ObjectId.createFromHexString(req.params.id);
 
 	try {
 		const response = await mongodb
 			.getDatabase()
 			.collection('students')
-			.deleteOne({ student_id: studentId });
+			.deleteOne({ _id: studentId });
 
 		if (response.deletedCount <= 0)
 			throw new Error(

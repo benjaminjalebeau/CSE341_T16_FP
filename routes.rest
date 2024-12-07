@@ -1,13 +1,15 @@
 ### Students
 
-# Get all students
+### Get all students
 GET http://localhost:3000/students
 
-# Get a single student by ID
+### Get a single student by ID
 GET http://localhost:3000/students/{id}
 
-# Create a new student
+### Create a new student
 POST http://localhost:3000/students
+Content-Type: application/json
+
 {
     "firstname": "John",
     "lastname": "Doe",
@@ -17,8 +19,10 @@ POST http://localhost:3000/students
     "enrollmentstatus": "enrolled"
 }
 
-# Update a student's information by ID
+### Update a student's information by ID
 PUT http://localhost:3000/students/{id}
+Content-Type: application/json
+
 {
     "firstname": "John",
     "lastname": "Doe",
@@ -28,25 +32,27 @@ PUT http://localhost:3000/students/{id}
     "enrollmentstatus": true
 }
 
-# Delete a student by ID
+### Delete a student by ID
 DELETE http://localhost:3000/students/{id}
 
-# Get students by student year
+### Get students by student year
 GET http://localhost:3000/students/year/{studentyear}
 
-# Get students by enrollment status
+### Get students by enrollment status
 GET http://localhost:3000/students/status/{enrollmentstatus}
 
 ### Courses
 
-# Get all courses
+### Get all courses
 GET http://localhost:3000/courses
 
-# Get a single course by MongoDB ID
+### Get a single course by MongoDB ID
 GET http://localhost:3000/courses/{MongoDBId}
 
-# Create a new course
+### Create a new course
 POST http://localhost:3000/courses
+Content-Type: application/json
+
 {
     "studentsEnrolled": ["S001", "S002", "S003"],
     "MongoDBTeacherId": "T12345",
@@ -55,8 +61,10 @@ POST http://localhost:3000/courses
     "MongoDBassignmentId": ["A001", "A002"]
 }
 
-# Update a course by MongoDB ID
+### Update a course by MongoDB ID
 PUT http://localhost:3000/courses/{MongoDBId}
+Content-Type: application/json
+
 {
     "studentsEnrolled": ["S001", "S002", "S004"],
     "MongoDBTeacherId": "T67890",
@@ -65,11 +73,11 @@ PUT http://localhost:3000/courses/{MongoDBId}
     "MongoDBassignmentId": ["A003", "A004"]
 }
 
-# Delete a course by MongoDB ID
+### Delete a course by MongoDB ID
 DELETE http://localhost:3000/courses/{MongoDBId}
 
-# Get courses by MongoDB Teacher ID
+### Get courses by MongoDB Teacher ID
 GET http://localhost:3000/courses/teacher/{MongoDBTeacherId}
 
-# Get courses by students enrolled
+### Get courses by students enrolled
 GET http://localhost:3000/courses/students/{studentId}
