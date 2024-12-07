@@ -2,25 +2,33 @@ const express = require('express');
 const router = express.Router();
 const studentsController = require('../controllers/students');
 
+const { handleErrors } = require('../utilities/errors');
+
 // Get all students
-router.get('/', studentsController.getAll);
+router.get('/', handleErrors(studentsController.getAll));
 
 // Get a single student by ID
-router.get('/:id', studentsController.getSingle);
+router.get('/:id', handleErrors(studentsController.getSingle));
 
 // Get students by student year
-router.get('/:studentyear', studentsController.getByStudentYear);
+router.get(
+	'/year/:studentyear',
+	handleErrors(studentsController.getByStudentYear)
+);
 
 // Get students by enrollment status
-router.get('/:enrollmentstatus', studentsController.getByEnrollmentStatus);
+router.get(
+	'/status/:enrollmentstatus',
+	handleErrors(studentsController.getByEnrollmentStatus)
+);
 
 // Create a new student
-router.post('/', studentsController.createStudent);
+router.post('/', handleErrors(studentsController.createStudent));
 
 // Update an existing student
-router.put('/:id', studentsController.updateStudent);
+router.put('/:id', handleErrors(studentsController.updateStudent));
 
 // Delete a student
-router.delete('/:id', studentsController.deleteStudent);
+router.delete('/:id', handleErrors(studentsController.deleteStudent));
 
 module.exports = router;
