@@ -268,8 +268,8 @@
                   "example": "Student created successfully."
                 },
                 "studentId": {
-                  "type": "integer",
-                  "example": 1
+                  "type": "string",
+                  "example": "60d21b4667d0d8992e610c85"
                 }
               }
             }
@@ -292,7 +292,7 @@
             "in": "path",
             "description": "ID of the student to retrieve",
             "required": true,
-            "type": "integer"
+            "type": "string"
           }
         ],
         "responses": {
@@ -318,7 +318,7 @@
             "in": "path",
             "description": "ID of the student to update",
             "required": true,
-            "type": "integer"
+            "type": "string"
           },
           {
             "in": "body",
@@ -349,7 +349,7 @@
             "in": "path",
             "description": "ID of the student to delete",
             "required": true,
-            "type": "integer"
+            "type": "string"
           }
         ],
         "responses": {
@@ -366,7 +366,7 @@
       "get": {
         "tags": ["Students"],
         "summary": "Get students by student year",
-        "description": "Retrieve students based on their academic year.",
+        "description": "Retrieve students based on their number of academic years.",
         "produces": ["application/json"],
         "parameters": [
           {
@@ -374,12 +374,13 @@
             "in": "path",
             "description": "Academic year of the students to retrieve",
             "required": true,
-            "type": "integer"
+            "type": "integer",
+            "example": "1"
           }
         ],
         "responses": {
           "200": {
-            "description": "List of students for the specified year.",
+            "description": "List of students for the specified number of year(s).",
             "schema": {
               "type": "array",
               "items": {
@@ -388,7 +389,7 @@
             }
           },
           "404": {
-            "description": "No students found for the given year."
+            "description": "No students found for the given number of years."
           }
         }
       }
@@ -405,7 +406,8 @@
             "in": "path",
             "description": "Enrollment status of the students to retrieve",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "example": "false"
           }
         ],
         "responses": {
