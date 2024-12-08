@@ -659,7 +659,7 @@
         },
         "password": {
           "type": "string",
-          "example": "securepassword"
+          "example": "Securepassword123!"
         }
       }
     },
@@ -690,8 +690,8 @@
       "required": ["student_id", "firstname", "lastname", "email", "password", "studentyear", "enrollmentstatus"],
       "properties": {
         "student_id": {
-          "type": "integer",
-          "example": 1
+          "type": "string",
+          "example": "60d21b4667d0d8992e610c85"
         },
         "firstname": {
           "type": "string",
@@ -707,7 +707,7 @@
         },
         "password": {
           "type": "string",
-          "example": "password123"
+          "example": "Password123!"
         },
         "studentyear": {
           "type": "integer",
@@ -737,7 +737,7 @@
         },
         "password": {
           "type": "string",
-          "example": "securepassword456"
+          "example": "Securepassword456!"
         },
         "studentyear": {
           "type": "integer",
