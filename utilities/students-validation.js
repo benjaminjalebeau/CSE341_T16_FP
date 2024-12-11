@@ -7,8 +7,9 @@ function getByYearRules() {
 			.trim()
 			.escape()
 			.notEmpty()
+			.withMessage('Please enter a number between 1 and 5.')
 			.isInt({ min: 1, max: 5 })
-			.withMessage('Please enter a valid student year.')
+			.withMessage('Please enter a number between 1 and 5.')
 	];
 }
 

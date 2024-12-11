@@ -406,8 +406,8 @@
             "in": "path",
             "description": "Enrollment status of the students to retrieve",
             "required": true,
-            "type": "string",
-            "example": "false"
+            "type": "boolean",
+            "example": false
           }
         ],
         "responses": {
@@ -681,7 +681,7 @@
         },
         "password": {
           "type": "string",
-          "example": "newsecurepassword"
+          "example": "Newsecurepassword123!"
         }
       }
     },
@@ -714,8 +714,8 @@
           "example": 2
         },
         "enrollmentstatus": {
-          "type": "string",
-          "example": "active"
+          "type": "boolean",
+          "example": true
         }
       }
     },
@@ -744,8 +744,8 @@
           "example": 3
         },
         "enrollmentstatus": {
-          "type": "string",
-          "example": "graduated"
+          "type": "boolean",
+          "example": true
         }
       }
     },
