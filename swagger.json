@@ -1,817 +1,1017 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "School Management API",
-    "description": "API for managing teachers, students, courses and assignments in a school system.",
-    "version": "1.0.0"
-  },
-  "host": "cse341-t16-fp.onrender.com",
-  "basePath": "/",
-  "schemes": [
-    "https",
-    "http"
-  ],
-  "tags": [
-    {
-      "name": "Authentication",
-      "description": "Authentication endpoints"
-    },
-    {
-      "name": "Teachers",
-      "description": "Teacher-related operations"
-    },
-    {
-      "name": "Students",
-      "description": "Student-related operations"
-    },
-    {
-      "name": "Courses",
-      "description": "Course-related operations"
-    }
-  ],
-  "paths": {
-    "/login": {
-      "get": {
-        "tags": ["Authentication"],
-        "summary": "Authenticate a user",
-        "description": "Authenticate a user via GitHub.",
-        "responses": {
-          "200": {
-            "description": "Login successful."
-          },
-          "401": {
-            "description": "Unauthorized access."
-          }
-        }
-      }
-    },
-    "/logout": {
-      "get": {
-        "tags": ["Authentication"],
-        "summary": "Logout a user",
-        "description": "Logout a user and clear the session.",
-        "responses": {
-          "200": {
-            "description": "Logout successful."
-          }
-        }
-      }
-    },
-    "/api-docs": {
-      "get": {
-        "tags": ["Authentication"],
-        "summary": "Access API documentation",
-        "description": "Access the Swagger API documentation.",
-        "responses": {
-          "200": {
-            "description": "API documentation retrieved successfully."
-          }
-        }
-      }
-    },
-    "/teachers": {
-      "get": {
-        "tags": ["Teachers"],
-        "summary": "Get all teachers",
-        "description": "Retrieve a list of all teachers.",
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "List of all teachers.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Teacher"
-              }
-            }
-          },
-          "400": {
-            "description": "Error retrieving teachers."
-          }
-        }
-      },
-      "post": {
-        "tags": ["Teachers"],
-        "summary": "Create a new teacher",
-        "description": "Add a new teacher to the system.",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Teacher object that needs to be added",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/TeacherInput"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Teacher created successfully.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Teacher created successfully."
-                },
-                "teacherId": {
-                  "type": "string",
-                  "example": "60d21b4667d0d8992e610c85"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error."
-          }
-        }
-      }
-    },
-    "/teachers/{id}": {
-      "get": {
-        "tags": ["Teachers"],
-        "summary": "Get teacher by ID",
-        "description": "Retrieve a single teacher by their ID.",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the teacher to retrieve",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Teacher details retrieved successfully.",
-            "schema": {
-              "$ref": "#/definitions/Teacher"
-            }
-          },
-          "400": {
-            "description": "Invalid teacher ID format."
-          },
-          "404": {
-            "description": "Teacher not found."
-          }
-        }
-      },
-      "put": {
-        "tags": ["Teachers"],
-        "summary": "Update a teacher by ID",
-        "description": "Update an existing teacher's information.",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the teacher to update",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Updated teacher object",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/TeacherInput"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Teacher updated successfully."
-          },
-          "400": {
-            "description": "Invalid input or teacher ID."
-          },
-          "500": {
-            "description": "Internal Server Error."
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Teachers"],
-        "summary": "Delete a teacher by ID",
-        "description": "Remove a teacher from the system.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the teacher to delete",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Teacher deleted successfully."
-          },
-          "400": {
-            "description": "Invalid teacher ID format."
-          },
-          "500": {
-            "description": "Internal Server Error."
-          }
-        }
-      }
-    },
-    "/students": {
-      "get": {
-        "tags": ["Students"],
-        "summary": "Get all students",
-        "description": "Retrieve a list of all students.",
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "List of all students.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Student"
-              }
-            }
-          },
-          "500": {
-            "description": "Error retrieving students."
-          }
-        }
-      },
-      "post": {
-        "tags": ["Students"],
-        "summary": "Create a new student",
-        "description": "Add a new student to the system.",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Student object that needs to be added",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/StudentInput"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Student created successfully.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Student created successfully."
-                },
-                "studentId": {
-                  "type": "string",
-                  "example": "60d21b4667d0d8992e610c85"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error."
-          }
-        }
-      }
-    },
-    "/students/{id}": {
-      "get": {
-        "tags": ["Students"],
-        "summary": "Get a single student by ID",
-        "description": "Retrieve details of a specific student by their ID.",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the student to retrieve",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Student details retrieved successfully.",
-            "schema": {
-              "$ref": "#/definitions/Student"
-            }
-          },
-          "404": {
-            "description": "Student not found."
-          }
-        }
-      },
-      "put": {
-        "tags": ["Students"],
-        "summary": "Update a student by ID",
-        "description": "Update an existing student's information.",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the student to update",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Updated student object",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/StudentInput"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Student updated successfully."
-          },
-          "500": {
-            "description": "Internal Server Error."
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Students"],
-        "summary": "Delete a student by ID",
-        "description": "Remove a student from the system.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the student to delete",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Student deleted successfully."
-          },
-          "500": {
-            "description": "Internal Server Error."
-          }
-        }
-      }
-    },
-    "/students/year/{studentyear}": {
-      "get": {
-        "tags": ["Students"],
-        "summary": "Get students by student year",
-        "description": "Retrieve students based on their number of academic years.",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "studentyear",
-            "in": "path",
-            "description": "Academic year of the students to retrieve",
-            "required": true,
-            "type": "integer",
-            "example": "1"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of students for the specified number of year(s).",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Student"
-              }
-            }
-          },
-          "404": {
-            "description": "No students found for the given number of years."
-          }
-        }
-      }
-    },
-    "/students/status/{enrollmentstatus}": {
-      "get": {
-        "tags": ["Students"],
-        "summary": "Get students by enrollment status",
-        "description": "Retrieve students based on their enrollment status.",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "enrollmentstatus",
-            "in": "path",
-            "description": "Enrollment status of the students to retrieve",
-            "required": true,
-            "type": "boolean",
-            "example": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of students with the specified enrollment status.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Student"
-              }
-            }
-          },
-          "404": {
-            "description": "No students found for the given enrollment status."
-          }
-        }
-      }
-    },
-    "/courses": {
-      "get": {
-        "tags": ["Courses"],
-        "summary": "Get all courses",
-        "description": "Retrieve a list of all courses.",
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "List of all courses.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Course"
-              }
-            }
-          },
-          "404": {
-            "description": "No courses found."
-          }
-        }
-      },
-      "post": {
-        "tags": ["Courses"],
-        "summary": "Create a new course",
-        "description": "Add a new course to the system.",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Course object that needs to be added",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CourseInput"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Course created successfully.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Course created successfully."
-                },
-                "courseId": {
-                  "type": "string",
-                  "example": "60d21b4667d0d8992e610c85"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error."
-          }
-        }
-      }
-    },
-    "/courses/{id}": {
-      "get": {
-        "tags": ["Courses"],
-        "summary": "Get course by ID",
-        "description": "Retrieve details of a specific course by its ID.",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the course to retrieve",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Course details retrieved successfully.",
-            "schema": {
-              "$ref": "#/definitions/Course"
-            }
-          },
-          "400": {
-            "description": "Invalid course ID format."
-          },
-          "404": {
-            "description": "Course not found."
-          }
-        }
-      },
-      "put": {
-        "tags": ["Courses"],
-        "summary": "Update course by ID",
-        "description": "Update an existing course's information.",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the course to update",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Updated course object",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CourseInput"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Course updated successfully."
-          },
-          "400": {
-            "description": "Invalid input or course ID."
-          },
-          "404": {
-            "description": "Course not found."
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Courses"],
-        "summary": "Delete course by ID",
-        "description": "Remove a course from the system.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the course to delete",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Course deleted successfully."
-          },
-          "400": {
-            "description": "Invalid course ID format."
-          },
-          "404": {
-            "description": "Course not found."
-          }
-        }
-      }
-    },
-    "/courses/teacher/{id}": {
-      "get": {
-        "tags": ["Courses"],
-        "summary": "Get courses by teacher ID",
-        "description": "Retrieve all courses taught by a specific teacher.",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the teacher",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of courses taught by the specified teacher.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Course"
-              }
-            }
-          },
-          "404": {
-            "description": "No courses found for the given teacher."
-          }
-        }
-      }
-    },
-    "/courses/student/{id}": {
-      "get": {
-        "tags": ["Courses"],
-        "summary": "Get courses by student ID",
-        "description": "Retrieve all courses a specific student is enrolled in.",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the student",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of courses the specified student is enrolled in.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Course"
-              }
-            }
-          },
-          "404": {
-            "description": "No courses found for the given student."
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "Teacher": {
-      "type": "object",
-      "required": ["firstName", "lastName", "email", "password"],
-      "properties": {
-        "firstName": {
-          "type": "string",
-          "example": "John"
-        },
-        "lastName": {
-          "type": "string",
-          "example": "Doe"
-        },
-        "email": {
-          "type": "string",
-          "example": "john.doe@example.com"
-        },
-        "password": {
-          "type": "string",
-          "example": "Securepassword123!"
-        }
-      }
-    },
-    "TeacherInput": {
-      "type": "object",
-      "required": ["firstName", "lastName", "email", "password"],
-      "properties": {
-        "firstName": {
-          "type": "string",
-          "example": "Jane"
-        },
-        "lastName": {
-          "type": "string",
-          "example": "Smith"
-        },
-        "email": {
-          "type": "string",
-          "example": "jane.smith@example.com"
-        },
-        "password": {
-          "type": "string",
-          "example": "Newsecurepassword123!"
-        }
-      }
-    },
-    "Student": {
-      "type": "object",
-      "required": ["student_id", "firstname", "lastname", "email", "password", "studentyear", "enrollmentstatus"],
-      "properties": {
-        "student_id": {
-          "type": "string",
-          "example": "60d21b4667d0d8992e610c85"
-        },
-        "firstname": {
-          "type": "string",
-          "example": "Alice"
-        },
-        "lastname": {
-          "type": "string",
-          "example": "Johnson"
-        },
-        "email": {
-          "type": "string",
-          "example": "alice.johnson@example.com"
-        },
-        "password": {
-          "type": "string",
-          "example": "Password123!"
-        },
-        "studentyear": {
-          "type": "integer",
-          "example": 2
-        },
-        "enrollmentstatus": {
-          "type": "boolean",
-          "example": true
-        }
-      }
-    },
-    "StudentInput": {
-      "type": "object",
-      "required": ["firstname", "lastname", "email", "password", "studentyear", "enrollmentstatus"],
-      "properties": {
-        "firstname": {
-          "type": "string",
-          "example": "Bob"
-        },
-        "lastname": {
-          "type": "string",
-          "example": "Williams"
-        },
-        "email": {
-          "type": "string",
-          "example": "bob.williams@example.com"
-        },
-        "password": {
-          "type": "string",
-          "example": "Securepassword456!"
-        },
-        "studentyear": {
-          "type": "integer",
-          "example": 3
-        },
-        "enrollmentstatus": {
-          "type": "boolean",
-          "example": true
-        }
-      }
-    },
-    "Course": {
-      "type": "object",
-      "required": ["studentsEnrolled", "teacherId", "courseName", "credits", "assignmentId"],
-      "properties": {
-        "studentsEnrolled": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "example": "S001"
-          }
-        },
-        "teacherId": {
-          "type": "string",
-          "example": "60d21b4667d0d8992e610c85"
-        },
-        "courseName": {
-          "type": "string",
-          "example": "Mathematics 101"
-        },
-        "credits": {
-          "type": "integer",
-          "example": 3
-        },
-        "assignmentId": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "example": "A001"
-          }
-        }
-      }
-    },
-    "CourseInput": {
-      "type": "object",
-      "required": ["studentsEnrolled", "teacherId", "courseName", "credits", "assignmentId"],
-      "properties": {
-        "studentsEnrolled": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "example": "S002"
-          }
-        },
-        "teacherId": {
-          "type": "string",
-          "example": "60d21b4667d0d8992e610c86"
-        },
-        "courseName": {
-          "type": "string",
-          "example": "Physics 201"
-        },
-        "credits": {
-          "type": "integer",
-          "example": 4
-        },
-        "assignmentId": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "example": "A002"
-          }
-        }
-      }
-    }
-  }
+	"swagger": "2.0",
+	"info": {
+		"title": "School Management API",
+		"description": "API for managing teachers, students, courses and assignments in a school system.",
+		"version": "1.0.0"
+	},
+	"host": "cse341-t16-fp.onrender.com",
+	"basePath": "/",
+	"schemes": ["https", "http"],
+	"tags": [
+		{
+			"name": "Authentication",
+			"description": "Authentication endpoints"
+		},
+		{
+			"name": "Teachers",
+			"description": "Teacher-related operations"
+		},
+		{
+			"name": "Students",
+			"description": "Student-related operations"
+		},
+		{
+			"name": "Courses",
+			"description": "Course-related operations"
+		}
+	],
+	"paths": {
+		"/login": {
+			"get": {
+				"tags": ["Authentication"],
+				"summary": "Authenticate a user",
+				"description": "Authenticate a user via GitHub.",
+				"responses": {
+					"200": {
+						"description": "Login successful."
+					},
+					"401": {
+						"description": "Unauthorized access."
+					}
+				}
+			}
+		},
+		"/logout": {
+			"get": {
+				"tags": ["Authentication"],
+				"summary": "Logout a user",
+				"description": "Logout a user and clear the session.",
+				"responses": {
+					"200": {
+						"description": "Logout successful."
+					}
+				}
+			}
+		},
+		"/api-docs": {
+			"get": {
+				"tags": ["Authentication"],
+				"summary": "Access API documentation",
+				"description": "Access the Swagger API documentation.",
+				"responses": {
+					"200": {
+						"description": "API documentation retrieved successfully."
+					}
+				}
+			}
+		},
+		"/teachers": {
+			"get": {
+				"tags": ["Teachers"],
+				"summary": "Get all teachers",
+				"description": "Retrieve a list of all teachers.",
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "List of all teachers.",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Teacher"
+							}
+						}
+					},
+					"400": {
+						"description": "Error retrieving teachers."
+					}
+				}
+			},
+			"post": {
+				"tags": ["Teachers"],
+				"summary": "Create a new teacher",
+				"description": "Add a new teacher to the system.",
+				"consumes": ["application/json"],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Teacher object that needs to be added",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/TeacherInput"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Teacher created successfully.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"example": "Teacher created successfully."
+								},
+								"teacherId": {
+									"type": "string",
+									"example": "60d21b4667d0d8992e610c85"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error."
+					}
+				}
+			}
+		},
+		"/teachers/{id}": {
+			"get": {
+				"tags": ["Teachers"],
+				"summary": "Get teacher by ID",
+				"description": "Retrieve a single teacher by their ID.",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the teacher to retrieve",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Teacher details retrieved successfully.",
+						"schema": {
+							"$ref": "#/definitions/Teacher"
+						}
+					},
+					"400": {
+						"description": "Invalid teacher ID format."
+					},
+					"404": {
+						"description": "Teacher not found."
+					}
+				}
+			},
+			"put": {
+				"tags": ["Teachers"],
+				"summary": "Update a teacher by ID",
+				"description": "Update an existing teacher's information.",
+				"consumes": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the teacher to update",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Updated teacher object",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/TeacherInput"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Teacher updated successfully."
+					},
+					"400": {
+						"description": "Invalid input or teacher ID."
+					},
+					"500": {
+						"description": "Internal Server Error."
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Teachers"],
+				"summary": "Delete a teacher by ID",
+				"description": "Remove a teacher from the system.",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the teacher to delete",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Teacher deleted successfully."
+					},
+					"400": {
+						"description": "Invalid teacher ID format."
+					},
+					"500": {
+						"description": "Internal Server Error."
+					}
+				}
+			}
+		},
+		"/students": {
+			"get": {
+				"tags": ["Students"],
+				"summary": "Get all students",
+				"description": "Retrieve a list of all students.",
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "List of all students.",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Student"
+							}
+						}
+					},
+					"500": {
+						"description": "Error retrieving students."
+					}
+				}
+			},
+			"post": {
+				"tags": ["Students"],
+				"summary": "Create a new student",
+				"description": "Add a new student to the system.",
+				"consumes": ["application/json"],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Student object that needs to be added",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/StudentInput"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Student created successfully.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"example": "Student created successfully."
+								},
+								"studentId": {
+									"type": "string",
+									"example": "60d21b4667d0d8992e610c85"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error."
+					}
+				}
+			}
+		},
+		"/students/{id}": {
+			"get": {
+				"tags": ["Students"],
+				"summary": "Get a single student by ID",
+				"description": "Retrieve details of a specific student by their ID.",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the student to retrieve",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Student details retrieved successfully.",
+						"schema": {
+							"$ref": "#/definitions/Student"
+						}
+					},
+					"404": {
+						"description": "Student not found."
+					}
+				}
+			},
+			"put": {
+				"tags": ["Students"],
+				"summary": "Update a student by ID",
+				"description": "Update an existing student's information.",
+				"consumes": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the student to update",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Updated student object",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/StudentInput"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Student updated successfully."
+					},
+					"500": {
+						"description": "Internal Server Error."
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Students"],
+				"summary": "Delete a student by ID",
+				"description": "Remove a student from the system.",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the student to delete",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Student deleted successfully."
+					},
+					"500": {
+						"description": "Internal Server Error."
+					}
+				}
+			}
+		},
+		"/students/year/{studentyear}": {
+			"get": {
+				"tags": ["Students"],
+				"summary": "Get students by student year",
+				"description": "Retrieve students based on their number of academic years.",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "studentyear",
+						"in": "path",
+						"description": "Academic year of the students to retrieve",
+						"required": true,
+						"type": "integer",
+						"example": "1"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "List of students for the specified number of year(s).",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Student"
+							}
+						}
+					},
+					"404": {
+						"description": "No students found for the given number of years."
+					}
+				}
+			}
+		},
+		"/students/status/{enrollmentstatus}": {
+			"get": {
+				"tags": ["Students"],
+				"summary": "Get students by enrollment status",
+				"description": "Retrieve students based on their enrollment status.",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "enrollmentstatus",
+						"in": "path",
+						"description": "Enrollment status of the students to retrieve",
+						"required": true,
+						"type": "boolean",
+						"example": false
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "List of students with the specified enrollment status.",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Student"
+							}
+						}
+					},
+					"404": {
+						"description": "No students found for the given enrollment status."
+					}
+				}
+			}
+		},
+		"/courses": {
+			"get": {
+				"tags": ["Courses"],
+				"summary": "Get all courses",
+				"description": "Retrieve a list of all courses.",
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "List of all courses.",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Course"
+							}
+						}
+					},
+					"404": {
+						"description": "No courses found."
+					}
+				}
+			},
+			"post": {
+				"tags": ["Courses"],
+				"summary": "Create a new course",
+				"description": "Add a new course to the system.",
+				"consumes": ["application/json"],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Course object that needs to be added",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CourseInput"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Course created successfully.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"example": "Course created successfully."
+								},
+								"courseId": {
+									"type": "string",
+									"example": "60d21b4667d0d8992e610c85"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error."
+					}
+				}
+			}
+		},
+		"/courses/{id}": {
+			"get": {
+				"tags": ["Courses"],
+				"summary": "Get course by ID",
+				"description": "Retrieve details of a specific course by its ID.",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the course to retrieve",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Course details retrieved successfully.",
+						"schema": {
+							"$ref": "#/definitions/Course"
+						}
+					},
+					"400": {
+						"description": "Invalid course ID format."
+					},
+					"404": {
+						"description": "Course not found."
+					}
+				}
+			},
+			"put": {
+				"tags": ["Courses"],
+				"summary": "Update course by ID",
+				"description": "Update an existing course's information.",
+				"consumes": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the course to update",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Updated course object",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CourseInput"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Course updated successfully."
+					},
+					"400": {
+						"description": "Invalid input or course ID."
+					},
+					"404": {
+						"description": "Course not found."
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Courses"],
+				"summary": "Delete course by ID",
+				"description": "Remove a course from the system.",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the course to delete",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Course deleted successfully."
+					},
+					"400": {
+						"description": "Invalid course ID format."
+					},
+					"404": {
+						"description": "Course not found."
+					}
+				}
+			}
+		},
+		"/courses/teacher/{id}": {
+			"get": {
+				"tags": ["Courses"],
+				"summary": "Get courses by teacher ID",
+				"description": "Retrieve all courses taught by a specific teacher.",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the teacher",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "List of courses taught by the specified teacher.",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Course"
+							}
+						}
+					},
+					"404": {
+						"description": "No courses found for the given teacher."
+					}
+				}
+			}
+		},
+		"/courses/student/{id}": {
+			"get": {
+				"tags": ["Courses"],
+				"summary": "Get courses by student ID",
+				"description": "Retrieve all courses a specific student is enrolled in.",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the student",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "List of courses the specified student is enrolled in.",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Course"
+							}
+						}
+					},
+					"404": {
+						"description": "No courses found for the given student."
+					}
+				}
+			}
+		},
+		"/assignments": {
+			"get": {
+				"tags": ["Assignments"],
+				"summary": "Get all assignments",
+				"description": "Retrieve a list of all assignments.",
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "List of all assignments.",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Assignment"
+							}
+						}
+					},
+					"400": {
+						"description": "Error retrieving assignment."
+					}
+				}
+			},
+			"post": {
+				"tags": ["Assignments"],
+				"summary": "Create a new assignment",
+				"description": "Add a new assignment to the system.",
+				"consumes": ["application/json"],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Assignment object that needs to be added",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/AssignmentInput"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Assignment created successfully.",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"example": "Assignment created successfully."
+								},
+								"teacherId": {
+									"type": "string",
+									"example": "60d21b4667d0d8992e610c85"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error."
+					}
+				}
+			}
+		},
+		"/assignments/{id}": {
+			"get": {
+				"tags": ["Assignments"],
+				"summary": "Get assignment by ID",
+				"description": "Retrieve a single assignment by their ID.",
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the assignment to retrieve",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Assignment details retrieved successfully.",
+						"schema": {
+							"$ref": "#/definitions/Assignment"
+						}
+					},
+					"400": {
+						"description": "Invalid assignment ID format."
+					},
+					"404": {
+						"description": "Assignment not found."
+					}
+				}
+			},
+			"put": {
+				"tags": ["Assignments"],
+				"summary": "Update a assignment by ID",
+				"description": "Update an existing assignment's information.",
+				"consumes": ["application/json"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the assignment to update",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "Updated assignment object",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/AssignmentInput"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Assignment updated successfully."
+					},
+					"400": {
+						"description": "Invalid input or assignment ID."
+					},
+					"500": {
+						"description": "Internal Server Error."
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Assignments"],
+				"summary": "Delete a assignment by ID",
+				"description": "Remove a assignment from the system.",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the assignment to delete",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Assignment deleted successfully."
+					},
+					"400": {
+						"description": "Invalid assignment ID format."
+					},
+					"500": {
+						"description": "Internal Server Error."
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Teacher": {
+			"type": "object",
+			"required": ["firstName", "lastName", "email", "password"],
+			"properties": {
+				"firstName": {
+					"type": "string",
+					"example": "John"
+				},
+				"lastName": {
+					"type": "string",
+					"example": "Doe"
+				},
+				"email": {
+					"type": "string",
+					"example": "john.doe@example.com"
+				},
+				"password": {
+					"type": "string",
+					"example": "Securepassword123!"
+				}
+			}
+		},
+		"TeacherInput": {
+			"type": "object",
+			"required": ["firstName", "lastName", "email", "password"],
+			"properties": {
+				"firstName": {
+					"type": "string",
+					"example": "Jane"
+				},
+				"lastName": {
+					"type": "string",
+					"example": "Smith"
+				},
+				"email": {
+					"type": "string",
+					"example": "jane.smith@example.com"
+				},
+				"password": {
+					"type": "string",
+					"example": "Newsecurepassword123!"
+				}
+			}
+		},
+		"Student": {
+			"type": "object",
+			"required": [
+				"student_id",
+				"firstname",
+				"lastname",
+				"email",
+				"password",
+				"studentyear",
+				"enrollmentstatus"
+			],
+			"properties": {
+				"student_id": {
+					"type": "string",
+					"example": "60d21b4667d0d8992e610c85"
+				},
+				"firstname": {
+					"type": "string",
+					"example": "Alice"
+				},
+				"lastname": {
+					"type": "string",
+					"example": "Johnson"
+				},
+				"email": {
+					"type": "string",
+					"example": "alice.johnson@example.com"
+				},
+				"password": {
+					"type": "string",
+					"example": "Password123!"
+				},
+				"studentyear": {
+					"type": "integer",
+					"example": 2
+				},
+				"enrollmentstatus": {
+					"type": "boolean",
+					"example": true
+				}
+			}
+		},
+		"StudentInput": {
+			"type": "object",
+			"required": ["firstname", "lastname", "email", "password", "studentyear", "enrollmentstatus"],
+			"properties": {
+				"firstname": {
+					"type": "string",
+					"example": "Bob"
+				},
+				"lastname": {
+					"type": "string",
+					"example": "Williams"
+				},
+				"email": {
+					"type": "string",
+					"example": "bob.williams@example.com"
+				},
+				"password": {
+					"type": "string",
+					"example": "Securepassword456!"
+				},
+				"studentyear": {
+					"type": "integer",
+					"example": 3
+				},
+				"enrollmentstatus": {
+					"type": "boolean",
+					"example": true
+				}
+			}
+		},
+		"Course": {
+			"type": "object",
+			"required": ["studentsEnrolled", "teacherId", "courseName", "credits", "assignmentId"],
+			"properties": {
+				"studentsEnrolled": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"example": "S001"
+					}
+				},
+				"teacherId": {
+					"type": "string",
+					"example": "60d21b4667d0d8992e610c85"
+				},
+				"courseName": {
+					"type": "string",
+					"example": "Mathematics 101"
+				},
+				"credits": {
+					"type": "integer",
+					"example": 3
+				},
+				"assignmentId": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"example": "A001"
+					}
+				}
+			}
+		},
+		"CourseInput": {
+			"type": "object",
+			"required": ["studentsEnrolled", "teacherId", "courseName", "credits", "assignmentId"],
+			"properties": {
+				"studentsEnrolled": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"example": "S002"
+					}
+				},
+				"teacherId": {
+					"type": "string",
+					"example": "60d21b4667d0d8992e610c86"
+				},
+				"courseName": {
+					"type": "string",
+					"example": "Physics 201"
+				},
+				"credits": {
+					"type": "integer",
+					"example": 4
+				},
+				"assignmentId": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"example": "A002"
+					}
+				}
+			}
+		},
+		"Assignment": {
+			"type": "object",
+			"required": ["firstName", "lastName", "email", "password"],
+			"properties": {
+				"firstName": {
+					"type": "string",
+					"example": "John"
+				},
+				"lastName": {
+					"type": "string",
+					"example": "Doe"
+				},
+				"email": {
+					"type": "string",
+					"example": "john.doe@example.com"
+				},
+				"password": {
+					"type": "string",
+					"example": "Securepassword123!"
+				}
+			}
+		},
+		"AssignmentInput": {
+			"type": "object",
+			"required": ["firstName", "lastName", "email", "password"],
+			"properties": {
+				"firstName": {
+					"type": "string",
+					"example": "Jane"
+				},
+				"lastName": {
+					"type": "string",
+					"example": "Smith"
+				},
+				"email": {
+					"type": "string",
+					"example": "jane.smith@example.com"
+				},
+				"password": {
+					"type": "string",
+					"example": "Newsecurepassword123!"
+				}
+			}
+		}
+	}
 }

@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const studentsController = require('../controllers/students');
 
-const { idRules, checkOnId } = require('../utilities/id-validation');
 const {
 	createRules,
 	checkOnCreate,
@@ -12,18 +11,15 @@ const {
 	checkOnGet,
 	getByStatusRules
 } = require('../utilities/students-validation');
+const { idRules, checkOnId } = require('../utilities/id-validation');
+const { isAuthenticated } = require('../utilities/authenticate');
 const { handleErrors } = require('../utilities/errors');
 
 // Get all students
 router.get('/', handleErrors(studentsController.getAll));
 
 // Get a single student by ID
-router.get(
-	'/:id',
-	idRules(),
-	checkOnId,
-	handleErrors(studentsController.getSingle)
-);
+router.get('/:id', idRules(), checkOnId, handleErrors(studentsController.getSingle));
 
 // Get students by student year
 router.get(
@@ -46,6 +42,7 @@ router.post(
 	'/',
 	createRules(),
 	checkOnCreate,
+	isAuthenticated,
 	handleErrors(studentsController.createStudent)
 );
 
@@ -54,6 +51,7 @@ router.put(
 	'/:id',
 	updateRules(),
 	checkOnUpdate,
+	isAuthenticated,
 	handleErrors(studentsController.updateStudent)
 );
 
@@ -62,6 +60,7 @@ router.delete(
 	'/:id',
 	idRules(),
 	checkOnId,
+	isAuthenticated,
 	handleErrors(studentsController.deleteStudent)
 );
 

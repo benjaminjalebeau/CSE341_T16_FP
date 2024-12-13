@@ -7,8 +7,8 @@ router.use('/', require('./swagger'));
 //Routes for each collection
 router.use('/students', require('./students'));
 router.use('/teachers', require('./teachers'));
-//router.use('/courses', require('./courses'));
-//router.use('/assignments', require('./assignments'));
+router.use('/courses', require('./courses'));
+router.use('/assignments', require('./assignments'));
 
 //Checks the client id and secret to log you in or deny your request.
 //I'm not sure yet which is the best practice for adding new users to the github Oauth application to get the client id and secret.
