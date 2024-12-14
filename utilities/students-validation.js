@@ -19,8 +19,9 @@ function getByStatusRules() {
 			.trim()
 			.escape()
 			.notEmpty()
+			.withMessage('Please enter a valid enrollment status (true or false).')
 			.isBoolean()
-			.withMessage('Please enter a valid enrollment status.')
+			.withMessage('Please enter a valid enrollment status (true or false).')
 	];
 }
 
