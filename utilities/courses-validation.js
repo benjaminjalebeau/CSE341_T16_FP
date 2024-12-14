@@ -6,34 +6,37 @@ function createRules() {
 	return [
 		body('studentsEnrolled')
 			.isArray()
-			.withMessage('studentsEnrolled must be an array')
-			.custom((array) => array.every((item) => typeof item === 'string'))
-			.withMessage('Each studentID must be a string')
-			.custom((array) => array.every((item) => /^S\d{3}$/.test(item)))
-			.withMessage('Each studentID must match "SXXX" format, where XXX are numbers'),
+			.withMessage('studentsEnrolled must be an array.')
+			.custom((array) => array.every((item) => /^[a-fA-F0-9]{24}$/.test(item)))
+			.withMessage('Each studentID must be a valid MongoDB Id.'),
 
 		body('teacherId')
-			.isLength({ min: 24, max: 24 })
-			.matches(/^[a-fA-F0-9]+$/)
-			.isMongoId()
-			.withMessage('Please enter a valid teacher id.'),
+			.matches(/^[a-fA-F0-9]{24}$/)
+			.withMessage('Please enter a valid teacher ID (24-character hexadecimal).'),
 
 		body('courseName')
 			.trim()
 			.escape()
 			.notEmpty()
+			.withMessage('courseName is required.')
 			.isString()
-			.withMessage('courseName must be a string')
-			.matches(/^[A-Za-Z]+ \d{3}$/)
-			.withMessage('Enter a valid course name.'),
+			.withMessage('courseName must be a string.')
+			.matches(/^[A-Za-z ]+$/)
+			.withMessage('Enter a valid course name containing only letters and spaces (e.g., "Operating Systems").'),
 
-		body('credits').trim().escape().notEmpty().isInt().withMessage('credits must be an int'),
+		body('credits')
+			.trim()
+			.escape()
+			.notEmpty()
+			.withMessage('credits is required.')
+			.isInt()
+			.withMessage('credits must be an integer.'),
 
 		body('assignmentId')
 			.isArray()
-			.withMessage('assignmentId must be an array')
-			.custom((array) => array.every((item) => ObjectId.isValid(item)))
-			.withMessage('Each assignmentId must be a valid MongoId')
+			.withMessage('assignmentId must be an array.')
+			.custom((array) => array.every((item) => /^[a-fA-F0-9]{24}$/.test(item)))
+			.withMessage('Each assignmentId must be a valid MongoDB Id.')
 	];
 }
 
@@ -55,41 +58,42 @@ function checkOnCreate(req, res, next) {
 function updateRules() {
 	return [
 		param('id')
-			.isLength({ min: 24, max: 24 })
-			.matches(/^[a-fA-F0-9]+$/)
-			.isMongoId()
-			.withMessage('Please enter a valid course id.'),
+			.matches(/^[a-fA-F0-9]{24}$/)
+			.withMessage('Please enter a valid course ID (24-character hexadecimal).'),
 
 		body('studentsEnrolled')
 			.isArray()
-			.withMessage('studentsEnrolled must be an array')
-			.custom((array) => array.every((item) => typeof item === 'string'))
-			.withMessage('Each studentID must be a string')
-			.custom((array) => array.every((item) => /^S\d{3}$/.test(item)))
-			.withMessage('Each studentID must match "SXXX" format, where XXX are numbers'),
+			.withMessage('studentsEnrolled must be an array.')
+			.custom((array) => array.every((item) => /^[a-fA-F0-9]{24}$/.test(item)))
+			.withMessage('Each studentID must be a valid MongoDB Id.'),
 
 		body('teacherId')
-			.isLength({ min: 24, max: 24 })
-			.matches(/^[a-fA-F0-9]+$/)
-			.isMongoId()
-			.withMessage('Please enter a valid teacher id.'),
+			.matches(/^[a-fA-F0-9]{24}$/)
+			.withMessage('Please enter a valid teacher ID (24-character hexadecimal).'),
 
 		body('courseName')
 			.trim()
 			.escape()
 			.notEmpty()
+			.withMessage('courseName is required.')
 			.isString()
-			.withMessage('courseName must be a string')
-			.matches(/^[A-Za-Z]+ \d{3}$/)
-			.withMessage('Enter a valid course name.'),
+			.withMessage('courseName must be a string.')
+			.matches(/^[A-Za-z ]+$/)
+			.withMessage('Enter a valid course name containing only letters and spaces (e.g., "Operating Systems").'),
 
-		body('credits').trim().escape().notEmpty().isInt().withMessage('credits must be an int'),
+		body('credits')
+			.trim()
+			.escape()
+			.notEmpty()
+			.withMessage('credits is required.')
+			.isInt()
+			.withMessage('credits must be an integer.'),
 
 		body('assignmentId')
 			.isArray()
-			.withMessage('assignmentId must be an array')
-			.custom((array) => array.every((item) => ObjectId.isValid(item)))
-			.withMessage('Each assignmentId must be a valid MongoId')
+			.withMessage('assignmentId must be an array.')
+			.custom((array) => array.every((item) => /^[a-fA-F0-9]{24}$/.test(item)))
+			.withMessage('Each assignmentId must be a valid MongoDB Id.')
 	];
 }
 
