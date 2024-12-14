@@ -1,8 +1,5 @@
 const { param, validationResult } = require('express-validator');
-const {
-	ValidationError,
-	detailValidationErrors
-} = require('../utilities/errors');
+const { ValidationError, detailValidationErrors } = require('./errors');
 
 function idRules() {
 	return [

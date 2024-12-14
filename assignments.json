@@ -1,0 +1,35 @@
+[
+	{
+		"title": "Physics Homework",
+		"description": "Complete the problems in Chapter 3.",
+		"dueDate": "2024-12-20",
+		"file": "https://example.com/uploads/physics_homework.pdf",
+		"rubric": [
+			"Understand the concepts of Chapter 3",
+			"Solve all problems correctly",
+			"Show all work and calculations"
+		]
+	},
+	{
+		"title": "Chemistry Lab Report",
+		"description": "Write a report on the recent lab experiment.",
+		"dueDate": "2024-12-22",
+		"file": "https://example.com/uploads/chemistry_lab_report.pdf",
+		"rubric": [
+			"Describe the experiment procedure",
+			"Analyze the results",
+			"Provide a conclusion based on the data"
+		]
+	},
+	{
+		"title": "Math Project",
+		"description": "Create a presentation on linear algebra applications.",
+		"dueDate": "2024-12-25",
+		"file": "https://example.com/uploads/math_project.pdf",
+		"rubric": [
+			"Explain the applications of linear algebra",
+			"Use real-world examples",
+			"Present the findings clearly"
+		]
+	}
+]
