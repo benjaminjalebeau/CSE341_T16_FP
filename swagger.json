@@ -24,6 +24,10 @@
 		{
 			"name": "Courses",
 			"description": "Course-related operations"
+		},
+		{
+			"name": "Assignments",
+			"description": "Assignment-related operations"
 		}
 	],
 	"paths": {
@@ -932,7 +936,7 @@
 					"type": "array",
 					"items": {
 						"type": "string",
-						"example": "A001"
+						"example": "60d21b4667d0d8992e610c23"
 					}
 				}
 			}
@@ -945,7 +949,7 @@
 					"type": "array",
 					"items": {
 						"type": "string",
-						"example": "S002"
+						"example": "60d21b4667d0d8992e610c75"
 					}
 				},
 				"teacherId": {
@@ -964,7 +968,7 @@
 					"type": "array",
 					"items": {
 						"type": "string",
-						"example": "A002"
+						"example": "60d21b4667d0d8992e610c92"
 					}
 				}
 			}
