@@ -21,7 +21,7 @@ function createRules() {
 			.withMessage('courseName is required.')
 			.isString()
 			.withMessage('courseName must be a string.')
-			.matches(/^[A-Za-Z]+ \d{3}$/)
+			.matches(/^[A-Za-z]+ \d{3}$/)
 			.withMessage('Enter a valid course name (e.g., "Math 101").'),
 
 		body('credits')
@@ -78,7 +78,7 @@ function updateRules() {
 			.withMessage('courseName is required.')
 			.isString()
 			.withMessage('courseName must be a string.')
-			.matches(/^[A-Za-Z]+ \d{3}$/)
+			.matches(/^[A-Za-z]+ \d{3}$/)
 			.withMessage('Enter a valid course name (e.g., "Math 101").'),
 
 		body('credits')
