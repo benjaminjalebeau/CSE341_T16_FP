@@ -975,45 +975,39 @@
 		},
 		"Assignment": {
 			"type": "object",
-			"required": ["firstName", "lastName", "email", "password"],
+			"required": ["title", "description", "dueDate", "file", "rubric"],
 			"properties": {
-				"firstName": {
-					"type": "string",
-					"example": "John"
-				},
-				"lastName": {
-					"type": "string",
-					"example": "Doe"
-				},
-				"email": {
-					"type": "string",
-					"example": "john.doe@example.com"
-				},
-				"password": {
-					"type": "string",
-					"example": "Securepassword123!"
+				"title": { "type": "string", "example": "Physics Homework" },
+				"description": { "type": "string", "example": "Complete the problems in Chapter 3." },
+				"dueDate": { "type": "string", "format": "date", "example": "2024-12-20" },
+				"file": { "type": "string", "example": "https://example.com/uploads/physics_homework.pdf" },
+				"rubric": {
+					"type": "array",
+					"items": { "type": "string" },
+					"example": [
+						"Understand the concepts of Chapter 3",
+						"Solve all problems correctly",
+						"Show all work and calculations"
+					]
 				}
 			}
 		},
 		"AssignmentInput": {
 			"type": "object",
-			"required": ["firstName", "lastName", "email", "password"],
+			"required": ["title", "description", "dueDate", "file", "rubric"],
 			"properties": {
-				"firstName": {
-					"type": "string",
-					"example": "Jane"
-				},
-				"lastName": {
-					"type": "string",
-					"example": "Smith"
-				},
-				"email": {
-					"type": "string",
-					"example": "jane.smith@example.com"
-				},
-				"password": {
-					"type": "string",
-					"example": "Newsecurepassword123!"
+				"title": { "type": "string", "example": "Physics Homework" },
+				"description": { "type": "string", "example": "Complete the problems in Chapter 3." },
+				"dueDate": { "type": "string", "format": "date", "example": "2024-12-20" },
+				"file": { "type": "string", "example": "https://example.com/uploads/physics_homework.pdf" },
+				"rubric": {
+					"type": "array",
+					"items": { "type": "string" },
+					"example": [
+						"Understand the concepts of Chapter 3",
+						"Solve all problems correctly",
+						"Show all work and calculations"
+					]
 				}
 			}
 		}

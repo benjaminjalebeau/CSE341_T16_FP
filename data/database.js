@@ -27,7 +27,12 @@ const getDatabase = () => {
 	return database.db('students');
 };
 
+const closeConnection = async () => {
+	await database.close();
+};
+
 module.exports = {
 	initDb,
-	getDatabase
+	getDatabase,
+	closeConnection
 };
