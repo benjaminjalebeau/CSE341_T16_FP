@@ -13,40 +13,40 @@ const { isAuthenticated } = require('../utilities/authenticate');
 const { handleErrors } = require('../utilities/errors');
 
 // Routes for Courses
-router.get('/courses', handleErrors(coursesController.getAllCourses));
-router.get('/courses/:id', idRules(), checkOnId, handleErrors(coursesController.getCourseById));
+router.get('/', handleErrors(coursesController.getAllCourses)); // GET /courses
+router.get('/:id', idRules(), checkOnId, handleErrors(coursesController.getCourseById)); // GET /courses/:id
 router.get(
-	'/courses/teacher/:id',
+	'/teacher/:id',
 	idRules(),
 	checkOnId,
 	handleErrors(coursesController.getCoursesByTeacherId)
-);
+); // GET /courses/teacher/:id
 router.get(
-	'/courses/student/:id',
+	'/student/:id',
 	idRules(),
 	checkOnId,
 	handleErrors(coursesController.getCoursesByStudent)
-);
+); // GET /courses/student/:id
 router.post(
-	'/courses',
+	'/',
 	createRules(),
 	checkOnCreate,
 	isAuthenticated,
 	handleErrors(coursesController.createCourse)
-);
+); // POST /courses
 router.put(
-	'/courses/:id',
+	'/:id',
 	updateRules(),
 	checkOnUpdate,
 	isAuthenticated,
 	handleErrors(coursesController.updateCourse)
-);
+); // PUT /courses/:id
 router.delete(
-	'/courses/:id',
+	'/:id',
 	idRules(),
 	checkOnId,
 	isAuthenticated,
 	handleErrors(coursesController.deleteCourse)
-);
+); // DELETE /courses/:id
 
 module.exports = router;
