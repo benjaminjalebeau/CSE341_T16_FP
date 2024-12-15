@@ -1,6 +1,5 @@
 const { body, param, validationResult } = require('express-validator');
-const { ObjectId } = require('mongodb');
-const { ValidationError, detailValidationErrors } = require('../utilities/errors');
+const { ValidationError, detailValidationErrors } = require('./errors');
 
 function createRules() {
 	return [
@@ -21,8 +20,10 @@ function createRules() {
 			.withMessage('courseName is required.')
 			.isString()
 			.withMessage('courseName must be a string.')
-			.matches(/^[A-Za-z ]+$/)
-			.withMessage('Enter a valid course name containing only letters and spaces (e.g., "Operating Systems").'),
+			.matches(/^[A-Za-z\s]+$/)
+			.withMessage(
+				'Enter a valid course name containing only letters and spaces (e.g., "Operating Systems").'
+			),
 
 		body('credits')
 			.trim()
@@ -78,8 +79,10 @@ function updateRules() {
 			.withMessage('courseName is required.')
 			.isString()
 			.withMessage('courseName must be a string.')
-			.matches(/^[A-Za-z ]+$/)
-			.withMessage('Enter a valid course name containing only letters and spaces (e.g., "Operating Systems").'),
+			.matches(/^[A-Za-z\s]+$/)
+			.withMessage(
+				'Enter a valid course name containing only letters and spaces (e.g., "Operating Systems").'
+			),
 
 		body('credits')
 			.trim()

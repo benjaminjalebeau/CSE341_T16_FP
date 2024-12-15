@@ -14,31 +14,36 @@ const { handleErrors } = require('../utilities/errors');
 
 // Routes for Courses
 router.get('/courses', handleErrors(coursesController.getAllCourses));
-router.get('/courses/:id', idRules, checkOnId, handleErrors(coursesController.getCourseById));
+router.get('/courses/:id', idRules(), checkOnId, handleErrors(coursesController.getCourseById));
 router.get(
 	'/courses/teacher/:id',
-	idRules,
+	idRules(),
 	checkOnId,
 	handleErrors(coursesController.getCoursesByTeacherId)
 );
-router.get('/courses/student/:id', handleErrors(coursesController.getCoursesByStudent));
+router.get(
+	'/courses/student/:id',
+	idRules(),
+	checkOnId,
+	handleErrors(coursesController.getCoursesByStudent)
+);
 router.post(
 	'/courses',
-	createRules,
+	createRules(),
 	checkOnCreate,
 	isAuthenticated,
 	handleErrors(coursesController.createCourse)
 );
 router.put(
 	'/courses/:id',
-	updateRules,
+	updateRules(),
 	checkOnUpdate,
 	isAuthenticated,
 	handleErrors(coursesController.updateCourse)
 );
 router.delete(
 	'/courses/:id',
-	idRules,
+	idRules(),
 	checkOnId,
 	isAuthenticated,
 	handleErrors(coursesController.deleteCourse)

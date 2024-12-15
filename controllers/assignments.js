@@ -22,7 +22,7 @@ const getAllAssignments = async (req, res) => {
 const getAssignmentByID = async (req, res) => {
 	// #swagger.tags=['Assignments']
 	try {
-		const id = ObjectId.createFromHexString(req.params.assignmentId);
+		const id = ObjectId.createFromHexString(req.params.id);
 
 		const result = await mongodb
 			.getDatabase()
@@ -65,7 +65,7 @@ const addAssignment = async (req, res) => {
 const updateAssignment = async (req, res) => {
 	// #swagger.tags=['Assignments']
 	try {
-		const id = ObjectId.createFromHexString(req.params.assignmentId);
+		const id = ObjectId.createFromHexString(req.params.id);
 
 		const { body } = req;
 
@@ -88,7 +88,7 @@ const updateAssignment = async (req, res) => {
 const deleteAssignment = async (req, res) => {
 	// #swagger.tags=['Assignments']
 	try {
-		const id = ObjectId.createFromHexString(req.params.assignmentId);
+		const id = ObjectId.createFromHexString(req.params.id);
 
 		const response = await mongodb.getDatabase().collection('assignments').deleteOne({ _id: id });
 

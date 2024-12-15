@@ -1,8 +1,5 @@
 const { body, param, validationResult } = require('express-validator');
-const {
-	ValidationError,
-	detailValidationErrors
-} = require('../utilities/errors');
+const { ValidationError, detailValidationErrors } = require('./errors');
 
 function createRules() {
 	return [
@@ -110,9 +107,7 @@ function checkOnUpdate(req, res, next) {
 		return res
 			.status(400)
 			.setHeader('Content-Type', 'application/json')
-			.json(
-				new ValidationError(400, 'Error on teacher modification.', details)
-			);
+			.json(new ValidationError(400, 'Error on teacher modification.', details));
 	}
 
 	next();

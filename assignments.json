@@ -1,0 +1,155 @@
+[
+	{
+		"title": "Physics Homework",
+		"description": "Complete the problems in Chapter 3.",
+		"dueDate": "2024-12-20",
+		"file": "https://example.com/uploads/physics_homework.pdf",
+		"rubric": [
+			"Understand the concepts of Chapter 3",
+			"Solve all problems correctly",
+			"Show all work and calculations"
+		]
+	},
+	{
+		"title": "Chemistry Lab Report",
+		"description": "Write a report on the recent lab experiment.",
+		"dueDate": "2024-12-22",
+		"file": "https://example.com/uploads/chemistry_lab_report.pdf",
+		"rubric": [
+			"Describe the experiment procedure",
+			"Analyze the results",
+			"Provide a conclusion based on the data"
+		]
+	},
+	{
+		"title": "Math Project",
+		"description": "Create a presentation on linear algebra applications.",
+		"dueDate": "2024-12-25",
+		"file": "https://example.com/uploads/math_project.pdf",
+		"rubric": [
+			"Explain the applications of linear algebra",
+			"Use real-world examples",
+			"Present the findings clearly"
+		]
+	},
+	{
+		"title": "Physics Homework",
+		"description": "Complete the problems in Chapter 3.",
+		"dueDate": "2024-12-20",
+		"file": "https://example.com/uploads/physics_homework.pdf",
+		"rubric": [
+			"Understand the concepts of Chapter 3",
+			"Solve all problems correctly",
+			"Show all work and calculations"
+		]
+	},
+	{
+		"title": "Chemistry Lab Report",
+		"description": "Write a report on the recent lab experiment.",
+		"dueDate": "2024-12-22",
+		"file": "https://example.com/uploads/chemistry_lab_report.pdf",
+		"rubric": [
+			"Describe the experiment procedure",
+			"Analyze the results",
+			"Provide a conclusion based on the data"
+		]
+	},
+	{
+		"title": "Math Project",
+		"description": "Create a presentation on linear algebra applications.",
+		"dueDate": "2024-12-25",
+		"file": "https://example.com/uploads/math_project.pdf",
+		"rubric": [
+			"Explain the applications of linear algebra",
+			"Use real-world examples",
+			"Present the findings clearly"
+		]
+	},
+	{
+		"title": "Biology Assignment",
+		"description": "Write an essay on the process of photosynthesis.",
+		"dueDate": "2024-12-18",
+		"file": "https://example.com/uploads/biology_assignment.pdf",
+		"rubric": ["Explain the stages of photosynthesis", "Include diagrams", "Cite all sources"]
+	},
+	{
+		"title": "History Essay",
+		"description": "Discuss the causes and effects of World War II.",
+		"dueDate": "2024-12-19",
+		"file": "https://example.com/uploads/history_essay.pdf",
+		"rubric": [
+			"Cover major events leading to the war",
+			"Analyze the impact on different countries",
+			"Provide a well-structured argument"
+		]
+	},
+	{
+		"title": "Computer Science Project",
+		"description": "Develop a simple web application using HTML, CSS, and JavaScript.",
+		"dueDate": "2024-12-21",
+		"file": "https://example.com/uploads/computer_science_project.pdf",
+		"rubric": ["Functional user interface", "Responsive design", "Clean and commented code"]
+	},
+	{
+		"title": "English Literature Review",
+		"description": "Write a review of a classic novel.",
+		"dueDate": "2024-12-23",
+		"file": "https://example.com/uploads/english_literature_review.pdf",
+		"rubric": ["Summarize the plot", "Analyze the main themes", "Provide personal insights"]
+	},
+	{
+		"title": "Geography Presentation",
+		"description": "Create a presentation on climate change and its effects.",
+		"dueDate": "2024-12-24",
+		"file": "https://example.com/uploads/geography_presentation.pdf",
+		"rubric": [
+			"Use visual aids",
+			"Include recent data and statistics",
+			"Offer solutions to mitigate effects"
+		]
+	},
+	{
+		"title": "Art Project",
+		"description": "Create a piece of art inspired by a famous artist.",
+		"dueDate": "2024-12-26",
+		"file": "https://example.com/uploads/art_project.pdf",
+		"rubric": [
+			"Demonstrate understanding of the artist's style",
+			"Use appropriate materials",
+			"Provide a brief explanation of your work"
+		]
+	},
+	{
+		"title": "Economics Report",
+		"description": "Analyze the economic impact of a recent policy change.",
+		"dueDate": "2024-12-27",
+		"file": "https://example.com/uploads/economics_report.pdf",
+		"rubric": [
+			"Provide a clear summary of the policy",
+			"Use economic theories to analyze the impact",
+			"Include relevant data and graphs"
+		]
+	},
+	{
+		"title": "Physics Experiment",
+		"description": "Conduct an experiment to demonstrate Newton's laws of motion.",
+		"dueDate": "2024-12-28",
+		"file": "https://example.com/uploads/physics_experiment.pdf",
+		"rubric": [
+			"Design a clear experiment",
+			"Record and analyze data",
+			"Explain the results in the context of Newton's laws"
+		]
+	},
+	{
+		"title": "Music Composition",
+		"description": "Compose a short piece of music using a specific scale.",
+		"dueDate": "2024-12-29",
+		"file": "https://example.com/uploads/music_composition.pdf",
+		"rubric": [
+			"Use the specified scale correctly",
+			"Demonstrate creativity",
+			"Provide a written explanation of your composition"
+		]
+	}
+]
