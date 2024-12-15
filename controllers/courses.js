@@ -26,7 +26,7 @@ const getAllCourses = async (req, res) => {
 const getCourseById = async (req, res) => {
     //#swagger.tags=['Courses']
     try {
-        const courseId = ObjectId.createFromHexString(req.params.MongoDBId);
+        const courseId = ObjectId.createFromHexString(req.params.id);
 
         const result = await mongodb
             .getDatabase()
@@ -49,7 +49,7 @@ const getCourseById = async (req, res) => {
 const getCoursesByTeacherId = async (req, res) => {
     //#swagger.tags=['Courses']
     try {
-        const teacherId = req.params.teacherId;
+        const teacherId = req.params.id;
 
         const result = await mongodb
             .getDatabase()
@@ -72,7 +72,7 @@ const getCoursesByTeacherId = async (req, res) => {
 const getCoursesByStudent = async (req, res) => {
     //#swagger.tags=['Courses']
     try {
-        const studentId = req.params.studentId;
+        const studentId = req.params.id;
 
         const result = await mongodb
             .getDatabase()
@@ -124,7 +124,7 @@ const createCourse = async (req, res) => {
 const updateCourse = async (req, res) => {
     //#swagger.tags=['Courses']
     try {
-        const courseId = ObjectId.createFromHexString(req.params.MongoDBId);
+        const courseId = ObjectId.createFromHexString(req.params.id);
 
         const updatedCourse = {
             studentsEnrolled: req.body.studentsEnrolled,
@@ -152,7 +152,7 @@ const updateCourse = async (req, res) => {
 const deleteCourse = async (req, res) => {
     //#swagger.tags=['Courses']
     try {
-        const courseId = ObjectId.createFromHexString(req.params.MongoDBId);
+        const courseId = ObjectId.createFromHexString(req.params.id);
 
         const response = await mongodb
             .getDatabase()
