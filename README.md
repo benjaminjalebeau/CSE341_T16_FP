@@ -1,5 +1,6 @@
 ## Description
 A Restful API hosted on Render.com that handles data stored on MongoDB. The API stores data in the following collections: teachers, students, courses, and assignments. Each collection has CRUD routes.
+Created as a final project with Diego Vargas and Vicente Ferrer
 
 ## A few quick notes
 - This project is currently setup to run on localhost:3000
